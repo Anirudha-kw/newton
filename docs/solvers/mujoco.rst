@@ -142,8 +142,11 @@ Geometry types
      - ``mjGEOM_HFIELD``
      - Heightfield data is stored normalized to ``[0, 1]`` on the Newton
        :class:`~newton.Heightfield` source and forwarded as-is. The geom
-       origin is shifted by ``min_z`` so the lowest point is at the
-       correct world height.
+       origin is shifted by the scaled ``min_z`` along the heightfield's own
+       z axis so the lowest point is at the correct height. The heightfield
+       is compiled with the :attr:`~newton.Model.shape_scale` it has at
+       construction; changing the scale afterwards has no effect, so recreate
+       the solver to resize the heightfield.
    * - :attr:`~newton.GeoType.MESH` / :attr:`~newton.GeoType.CONVEX_MESH`
      - ``mjGEOM_MESH``
      - MuJoCo only supports **convex** collision meshes. Non-convex
